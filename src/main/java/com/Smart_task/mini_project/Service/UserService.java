@@ -2,7 +2,7 @@ package com.Smart_task.mini_project.Service;
 import com.Smart_task.mini_project.DTO.LoginRequest;
 import com.Smart_task.mini_project.DTO.RegisterRequest;
 import com.Smart_task.mini_project.Entity.UserEntity;
-import com.Smart_task.mini_project.Repository.Repo;
+import com.Smart_task.mini_project.Repository.UserRepository;
 import com.Smart_task.mini_project.Security.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class UserService {
 
     private final JwtUtil jwtUtil;
-    private final Repo userRepository;
+    private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
 
@@ -24,7 +24,6 @@ public class UserService {
                     user.setName(request.getName());
                     user.setEmail(request.getEmail());
                     user.setPassword(passwordEncoder.encode(request.getPassword()));
-                    user.setRoles(request.getRoles());
                     return userRepository.save(user);
                 }
 

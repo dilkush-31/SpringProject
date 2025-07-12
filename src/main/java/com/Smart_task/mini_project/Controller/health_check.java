@@ -1,12 +1,10 @@
 package com.Smart_task.mini_project.Controller;
 
 import com.Smart_task.mini_project.Entity.UserEntity;
-import com.Smart_task.mini_project.Repository.Repo;
+import com.Smart_task.mini_project.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/user")
@@ -17,7 +15,7 @@ public class health_check {
     }
 
     @Autowired
-    private Repo repository;
+    private UserRepository repository;
 
     @PostMapping("/create")
     public UserEntity create(@RequestBody UserEntity user){

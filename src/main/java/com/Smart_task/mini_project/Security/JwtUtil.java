@@ -1,17 +1,25 @@
 package com.Smart_task.mini_project.Security;
+
 import io.jsonwebtoken.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+
+import org.springframework.context.annotation.Configuration;
+
 import org.springframework.stereotype.Component;
 import java.util.Date;
 
     @Component
+
+    @RequiredArgsConstructor
     public class JwtUtil {
 
         @Value("${jwt.secret}")
-        private String secretKey="secret_smart_task_api";
+        private String secretKey;
 
         @Value("${jwt.expiration}")
-        private long expiration=86400000;
+        private long expiration;
+
 
         // Generate token using email (or username)
         public String generateToken(String email) {
@@ -38,6 +46,8 @@ import java.util.Date;
             return Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token)
                     .getBody().getSubject();
         }
+
+
     }
 
 
