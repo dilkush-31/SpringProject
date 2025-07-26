@@ -23,12 +23,10 @@ public class AuthContro {
     @Autowired
     private Repo_task repoTask;
 
-
-
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         String token = userService.login(loginRequest);
-        return ResponseEntity.ok().body("{\"token\": \"" + token + "\"}");
+        return ResponseEntity.ok().body(token);
     }
 
     @PostMapping("/register")
@@ -39,8 +37,8 @@ public class AuthContro {
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable String id){
-repoTask.deleteById(id);
-return "task is deleted";
+        repoTask.deleteById(id);
+        return "task is deleted";
     }
 
     @GetMapping("/find")
